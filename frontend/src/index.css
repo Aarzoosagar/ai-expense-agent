@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 255 100% 97.6%; /* #F6F3FF lavender */
+    --foreground: 227 52% 14%; /* navy text */
+    --card: 0 0% 100%;
+    --card-foreground: 227 52% 14%;
+    --primary: 251 89% 65%; /* #7357F5 */
+    --primary-foreground: 0 0% 100%;
+    --primary-soft: 253 100% 96%;
+    --secondary: 252 60% 95%;
+    --secondary-foreground: 227 52% 14%;
+    --muted: 252 40% 96%;
+    --muted-foreground: 228 14% 42%;
+    --accent: 252 60% 95%;
+    --accent-foreground: 251 70% 45%;
+    --destructive: 5 100% 68%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 250 30% 91%;
+    --input: 250 30% 88%;
+    --ring: 251 89% 65%;
+    --radius: 0.875rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+  ::selection {
+    background: hsl(var(--primary) / 0.25);
+  }
+}
+
+@layer utilities {
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  .scroll-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+  .skeleton {
+    @apply relative overflow-hidden rounded-md bg-muted;
+  }
+  .skeleton::after {
+    content: "";
+    @apply absolute inset-0 -translate-x-full;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+    animation: shimmer 1.4s infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
